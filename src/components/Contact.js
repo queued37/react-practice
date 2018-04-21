@@ -67,17 +67,20 @@ export default class Contact extends Component {
 
 
     render() {
-        const mapToContactInfo = (data) => {
-            data.sort()
-            data = data.filter((contact) => {
-                return contact.name.toLowerCase()
-                    .indexOf(this.state.keyword) > -1
-            })
-            return data.map((contact, i) => (
+        const mapToContactInfo = (contacts) => {
+            const contactsWithKeys = contacts
+                .map((value, i) => ({contact: value, key: i}))
+                .sort((a, b) => (a.contact.name.localeCompare(b.contact.name)))
+            const filteredContactsWithKeys = contactsWithKeys
+                .filter((data) => (
+                    data.contact.name.toLowerCase()
+                        .indexOf(this.state.keyword) > -1
+                ))
+            return filteredContactsWithKeys.map((data) => (
                 <ContactInfo
-                    contact={contact}
-                    key={i}
-                    onClick={() => {this.handleClick(i)}}
+                    contact={data.contact}
+                    key={data.key}
+                    onClick={() => {this.handleClick(data.key)}}
                 />
             ))
         }
