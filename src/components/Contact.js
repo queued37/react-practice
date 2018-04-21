@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ContactInfo from './ContactInfo'
-import ContactDetails from "./ContactDetails"
+import ContactDetails from './ContactDetails'
 
 export default class Contact extends Component {
 
