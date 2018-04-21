@@ -15,6 +15,7 @@ export default class ContactDetails extends Component {
             <div>
                 <h2>Details</h2>
                 {this.props.isSelected ? details : blank}
+                <button onClick={this.props.onRemove}>Remove</button>
             </div>
         )
     }
@@ -26,11 +27,13 @@ ContactDetails.propTypes = {
         phone: PropTypes.string,
     }),
     isSelected: PropTypes.bool,
+    onRemove: PropTypes.func,
 }
 
 ContactDetails.defaultProps = {
     contact: {
         name: '',
         phone: '',
-    }
+    },
+    onRemove: () => { console.error('onRemove not defined ') }
 }
