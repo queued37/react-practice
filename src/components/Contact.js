@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ContactInfo from './ContactInfo'
 import ContactDetails from './ContactDetails'
+import update from 'immutability-helper'
 
 export default class Contact extends Component {
 
@@ -19,6 +20,10 @@ export default class Contact extends Component {
 
         this.handleChange = this.handleChange.bind(this)
         this.handleClick = this.handleClick.bind(this)
+
+        this.handleCreate = this.handleCreate.bind(this)
+        this.handleRemove = this.handleRemove.bind(this)
+        this.handleEdit = this.handleEdit.bind(this)
     }
 
     handleChange(e) {
@@ -30,6 +35,31 @@ export default class Contact extends Component {
     handleClick(key) {
         this.setState({selectedKey: key})
     }
+
+    handleCreate(contact) {
+        this.setState({
+            contacts: update(this.state.contacts, {$push: [contact]})
+        })
+    }
+
+    handleRemove() {
+        this.setState({
+            contacts: update(this.state.contacts, {$splice: [[this.state.selectedKey, 1]]}),
+            selectedKey: -1
+        })
+    }
+
+    handleEdit(name, phone) {
+        this.setState({
+            contacts: update(this.state.contacts, {
+                [this.state.selectedKey]: {
+                    name: {$set: name},
+                    phone: {$set: phone}
+                }
+            })
+        })
+    }
+
 
     render() {
         const mapToContactInfo = (data) => {
