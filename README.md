@@ -12,16 +12,7 @@
 
 ## ESLint
 
-`.eslintrc`에 다음과 같은 내용을 추가했다.
-
-```json
-{
-  "extends": "react-app",
-  "rules": {
-    "semi": [2, "never"]
-  }
-}
-```
+ESLint 규칙에 `semi: ["error", "never"]`와 `quotes: ["error", "single"]`을 추가했다.
 
 취향껏 세미콜론을 쓰지 않도록 강제했는데[^1],
 이 규칙의 문제는 `create-react-app`이 기본적으로 세미콜론 달린 코드를 만들어 준다는 점이다.
