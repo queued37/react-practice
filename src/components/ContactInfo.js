@@ -5,8 +5,8 @@ export default class ContactInfo extends Component {
 
     render() {
         return (
-            <div>
-                {this.props.contact.name} {this.props.contact.phone}
+            <div onClick={this.props.onClick}>
+                {this.props.contact.name}
             </div>
         )
     }
@@ -15,6 +15,7 @@ export default class ContactInfo extends Component {
 ContactInfo.propTypes = {
     contact: PropTypes.shape({
         name: PropTypes.string,
-        phone: PropTypes.string,
-    })
+        phone: PropTypes.string
+    }),
+    onClick: PropTypes.func
 }
