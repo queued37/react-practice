@@ -9,7 +9,7 @@ export default class Contact extends Component {
     constructor(props){
         super(props)
         this.state = {
-            selectedKey: null,
+            selectedKey: -1,
             keyword: '',
             contacts: [
                 {name: 'Alice',   phone: '010-0000-0000'},
@@ -91,7 +91,7 @@ export default class Contact extends Component {
                     {mapToContactInfo(this.state.contacts)}
                 </div>
                 <ContactDetails
-                    isSelected={this.state.selectedKey != null}
+                    isSelected={this.state.selectedKey !== -1}
                     contact={this.state.contacts[this.state.selectedKey]}
                 />
                 <ContactCreate
