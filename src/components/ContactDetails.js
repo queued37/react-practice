@@ -24,6 +24,10 @@ export default class ContactDetails extends Component {
     }
 
     handleToggle() {
+        if (!this.props.isSelected) {
+            return
+        }
+
         if (!this.state.isEditMode) {
             // Pressed 'Edit'
         } else {
