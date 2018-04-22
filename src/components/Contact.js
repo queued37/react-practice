@@ -27,6 +27,20 @@ export default class Contact extends Component {
         this.handleEdit = this.handleEdit.bind(this)
     }
 
+    componentWillMount() {
+        const contacts = localStorage.contacts
+
+        if (contacts) {
+            this.setState({
+                contacts: JSON.parse(contacts)
+            })
+        }
+    }
+
+    componentDidUpdate() {
+        localStorage.contacts = JSON.stringify(this.state.contacts)
+    }
+
     handleChange(e) {
         this.setState({
             keyword: e.target.value
